@@ -1,9 +1,11 @@
 package model.bank.entities;
 
-public abstract class Conta {
+import model.Ibanck.IConta;
+
+public abstract class Conta implements IConta {
 	private int agencia;
 	private int numero;
-	private double saldo;
+	protected double saldo;
 
 	public Conta(int agencia, int numero, double saldo) {
 		this.agencia = agencia;
@@ -23,12 +25,6 @@ public abstract class Conta {
 		return saldo;
 	}
 
-	public void sacar(double valor) {
-		saldo -= valor;
-	}
 
-	public void depositar(double valor) {
-		saldo += valor;
-	}
 
 }
