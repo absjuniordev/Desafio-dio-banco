@@ -4,8 +4,8 @@ public class Poupanca extends Conta {
 
 	private int digito;
 
-	public Poupanca(int agencia, int numero, double saldo) {
-		super(agencia, numero, saldo);
+	public Poupanca( double saldo) {
+		super( saldo);
 
 	}
 
