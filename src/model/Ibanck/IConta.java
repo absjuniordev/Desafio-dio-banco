@@ -1,13 +1,16 @@
 package model.Ibanck;
 
 import model.bank.entities.Conta;
+import model.exceptions.DomainExceptions;
 
 public interface IConta {
 
-	public void sacar(double valor);
+	 void sacar(double valor) throws DomainExceptions;
 
-	public void depositar(double valor);
+	 void depositar(double valor);
 
-	public void transferencia(Conta contaDestino , double valor);
+	 void transferencia(Conta contaDestino , double valor) throws DomainExceptions;
+	
+	 void imrprimirExtrato();
 
 }

@@ -1,16 +1,22 @@
 package model.bank.entities;
 
+import model.clients.entities.Cliente;
+import model.exceptions.DomainExceptions;
+
 public class ContaCorrente extends Conta {
 
-	public ContaCorrente(double saldo) {
-		super(saldo);
+	public ContaCorrente(double saldo, Cliente cliente) {
+		super(saldo, cliente);
 
 	}
 
 	@Override
-	public void sacar(double valor) {
-		saldo -= valor;
-
+	public void sacar(double valor) throws DomainExceptions {
+		if (valor > saldo) {
+			throw new DomainExceptions("Saldo insuficiente");
+		} else {
+			saldo -= valor;
+		}
 	}
 
 	@Override
@@ -20,8 +26,20 @@ public class ContaCorrente extends Conta {
 	}
 
 	@Override
-	public void transferencia(Conta contaDestino, double valor) {
-		// TODO Auto-generated method stub
+	public void transferencia(Conta contaDestino, double valor) throws DomainExceptions {
+
+		if (valor > saldo) {
+			throw new DomainExceptions("Saldo insuficiente");
+		} else {
+			this.sacar(valor);
+			contaDestino.depositar(valor);
+		}
+	}
+
+	@Override
+	public void imrprimirExtrato() {
+		System.out.println("=== Extrato Conta Corrente ===");
+		imprimirItensComun();
 
 	}
 
